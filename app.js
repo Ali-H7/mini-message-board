@@ -1,7 +1,27 @@
 const express = require('express');
+const path = require('node:path');
 const app = express();
 
-app.get('/', (req, res) => res.send('Home'));
+const messages = [
+  {
+    text: 'Hi there!',
+    user: 'Akira',
+    added: new Date(),
+  },
+  {
+    text: 'Hello World!',
+    user: 'Ali',
+    added: new Date(),
+  },
+];
+
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
+app.get('/', (req, res) => {
+  res.render('index', { messages: messages });
+});
+
 app.get('/new', (req, res) => res.send('New'));
 
 const PORT = 3000;
