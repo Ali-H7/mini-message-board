@@ -4,13 +4,39 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Add New Message</title>
+    <script src="https://kit.fontawesome.com/f763e9ac42.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <form form method="POST" action="/new">
-      <h1>New Message</h1>
-      <input type="text" name="userName" placeholder="Enter your name" required />
-      <textarea name="userMessage" id="" placeholder="Enter your message"></textarea>
-      <button type="submit">Submit</button>
-    </form>
+    <%- include('header') %>
+
+    <div class="form-body-container">
+      <div class="form-container">
+        <a class="back-button" href="/"><i class="fa-solid fa-arrow-left"></i><span>Back to Homepage</span></a>
+        <form class="form" form method="POST" action="/new">
+          <div class="msg-note">
+            <h1>New Message</h1>
+            <p>Share your thoughts....</p>
+          </div>
+          <div class="inputs">
+            <div class="input-label">
+              <label for="userName">User Name</label>
+              <input type="text" name="userName" id="userName" placeholder="Enter your name" required />
+            </div>
+            <div class="input-label">
+              <label for="userMessage">Your Message</label>
+              <textarea name="userMessage" id="userMessage" placeholder="Enter your message"></textarea>
+            </div>
+            <button class="submit" type="submit">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
   </body>
 </html>
