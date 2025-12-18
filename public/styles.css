@@ -126,6 +126,25 @@ h6 {
   padding-bottom: 8px;
 }
 
+.title-container {
+  width: 100%;
+}
+
+.name-title {
+  padding-right: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.details-icon {
+  color: #9eb7a8;
+}
+.details-icon:hover {
+  cursor: pointer;
+  color: #fff;
+}
+
 .name {
   font-weight: bold;
   margin-bottom: -4px;
@@ -145,6 +164,7 @@ h6 {
   padding-bottom: 32px;
   gap: 16px;
   width: 100%;
+  max-width: 800px;
 }
 
 .message {
@@ -209,6 +229,11 @@ a:active {
   padding-left: 16px;
   font-size: 16px;
   color: #9eb7a8 !important;
+  width: fit-content;
+}
+
+.back-button:hover {
+  color: #fff !important;
 }
 
 .inputs {
@@ -257,3 +282,5 @@ a:active {
 .submit:hover {
   cursor: pointer;
 }
+
+/* message */

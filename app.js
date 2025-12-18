@@ -18,13 +18,13 @@ const messages = [
   {
     text: 'Hi there!',
     user: 'Ali Hasan',
-    added: timeAgo.format(new Date()),
+    added: new Date(),
   },
 ];
 
 // Routes
 app.get('/', (req, res) => {
-  res.render('index', { messages: messages });
+  res.render('index', { messages: messages, formatDate: (date) => timeAgo.format(date) });
 });
 
 app.get('/new', (req, res) => {
@@ -33,8 +33,13 @@ app.get('/new', (req, res) => {
 
 app.post('/new', (req, res) => {
   const { userMessage, userName } = req.body;
-  messages.push({ text: userMessage, user: userName, added: timeAgo.format(new Date()) });
+  messages.push({ text: userMessage, user: userName, added: new Date() });
   res.redirect('/');
+});
+
+app.get('/msg/:id', (req, res) => {
+  const { id } = req.params;
+  res.render('message', { message: messages[id], formatDate: (date) => timeAgo.format(date) });
 });
 
 // Server

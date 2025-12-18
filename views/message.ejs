@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mini Message Board</title>
+    <title>Message Details</title>
     <script src="https://kit.fontawesome.com/f763e9ac42.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -11,37 +11,34 @@
       href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
     <%- include('header') %>
 
     <div class="body-container">
-      <div class="btn-container">
-        <a href="/new"
-          ><button class="add-btn"><i class="fa-solid fa-plus"></i> Add New Message</button></a
-        >
-      </div>
+      <div class="btn-container"></div>
       <ul class="messages">
-        <% for (let i = messages.length - 1; i >= 0 ; i--) { %>
+        <a class="back-button" href="/" style="align-self: flex-start"
+          ><i class="fa-solid fa-arrow-left"></i><span>Back to Homepage</span></a
+        >
+
         <li class="message">
           <div class="user">
             <%- include('icon') %>
             <div class="title-container">
               <div class="name-title">
-                <p class="name"><%=messages[i].user%></p>
-                <a href="/msg/<%=i%>"><i class="fa-solid fa-ellipsis details-icon"></i></a>
+                <p class="name"><%=message.user%></p>
               </div>
               <div class="user-handle">
-                <p>@<%=messages[i].user.toLowerCase().replaceAll(' ', '_')%> · <%=formatDate(messages[i].added)%></p>
+                <p>@<%=message.user.toLowerCase().replaceAll(' ', '_')%> · <%=formatDate(message.added)%></p>
               </div>
             </div>
           </div>
           <div class="message-content">
-            <p><%= messages[i].text%></p>
+            <p><%=message.text%></p>
           </div>
         </li>
-        <% } %>
       </ul>
     </div>
   </body>
