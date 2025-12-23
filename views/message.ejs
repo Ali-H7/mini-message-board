@@ -28,15 +28,15 @@
             <%- include('icon') %>
             <div class="title-container">
               <div class="name-title">
-                <p class="name"><%=message.user%></p>
+                <p class="name"><%=message.user_name%></p>
               </div>
               <div class="user-handle">
-                <p>@<%=message.user.toLowerCase().replaceAll(' ', '_')%> · <%=formatDate(message.added)%></p>
+                <p>@<%=message.user_name.toLowerCase().replaceAll(' ', '_')%> · <%=formatDate(message.date)%></p>
               </div>
             </div>
           </div>
           <div class="message-content">
-            <p><%=message.text%></p>
+            <p><%=message.user_text%></p>
           </div>
         </li>
       </ul>

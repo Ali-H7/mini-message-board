@@ -1,8 +1,9 @@
+require('dotenv').config();
 const express = require('express');
 const path = require('node:path');
 const TimeAgo = require('javascript-time-ago');
 const en = require('javascript-time-ago/locale/en');
-
+const queries = require('./db/queries');
 const app = express();
 // App settings
 app.set('views', path.join(__dirname, 'views'));
@@ -14,32 +15,26 @@ app.use(express.static(assetsPath));
 TimeAgo.addDefaultLocale(en);
 const timeAgo = new TimeAgo('en-us');
 
-const messages = [
-  {
-    text: 'Hi there!',
-    user: 'Ali Hasan',
-    added: new Date(),
-  },
-];
-
 // Routes
-app.get('/', (req, res) => {
-  res.render('index', { messages: messages, formatDate: (date) => timeAgo.format(date) });
+app.get('/', async (req, res) => {
+  const messages = await queries.getAllMessages();
+  res.render('index', { messages, formatDate: (date) => timeAgo.format(date) });
 });
 
 app.get('/new', (req, res) => {
   res.render('form');
 });
 
-app.post('/new', (req, res) => {
+app.post('/new', async (req, res) => {
   const { userMessage, userName } = req.body;
-  messages.push({ text: userMessage, user: userName, added: new Date() });
+  await queries.addMessage(userMessage, userName);
   res.redirect('/');
 });
 
-app.get('/msg/:id', (req, res) => {
+app.get('/msg/:id', async (req, res) => {
   const { id } = req.params;
-  res.render('message', { message: messages[id], formatDate: (date) => timeAgo.format(date) });
+  const message = await queries.lookForMessage(id);
+  res.render('message', { message, formatDate: (date) => timeAgo.format(date) });
 });
 
 // Server

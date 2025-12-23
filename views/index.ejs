@@ -29,16 +29,18 @@
             <%- include('icon') %>
             <div class="title-container">
               <div class="name-title">
-                <p class="name"><%=messages[i].user%></p>
-                <a href="/msg/<%=i%>"><i class="fa-solid fa-ellipsis details-icon"></i></a>
+                <p class="name"><%=messages[i].user_name%></p>
+                <a href="/msg/<%=i + 1%>"><i class="fa-solid fa-ellipsis details-icon"></i></a>
               </div>
               <div class="user-handle">
-                <p>@<%=messages[i].user.toLowerCase().replaceAll(' ', '_')%> · <%=formatDate(messages[i].added)%></p>
+                <p>
+                  @<%=messages[i].user_name.toLowerCase().replaceAll(' ', '_')%> · <%=formatDate(messages[i].date)%>
+                </p>
               </div>
             </div>
           </div>
           <div class="message-content">
-            <p><%= messages[i].text%></p>
+            <p><%= messages[i].user_text%></p>
           </div>
         </li>
         <% } %>
