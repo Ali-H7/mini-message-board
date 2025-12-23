@@ -14,7 +14,7 @@ app.use(express.static(assetsPath));
 // Routes
 app.get('/', controllers.fetchMessages);
 app.get('/new', (req, res) => {
-  res.render('form');
+  res.render('form', { errors: [], userName: '', userMessage: '' });
 });
 app.post('/new', controllers.newMessage);
 app.get('/msg/:id', controllers.fetchMessage);

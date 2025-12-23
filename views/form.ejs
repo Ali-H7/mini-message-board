@@ -24,20 +24,30 @@
             <h1>New Message</h1>
             <p>Share your thoughts....</p>
           </div>
+          <%if (errors.length > 0) { %>
+          <ul class="errors">
+            <% errors.forEach((error)=>{ %>
+            <li><%= error.msg%></li>
+            <% }) %>
+          </ul>
+          <% }; %>
           <div class="inputs">
             <div class="input-label">
               <label for="userName">User Name</label>
-              <input type="text" name="userName" id="userName" placeholder="Enter your name" required />
+              <input
+                type="text"
+                name="userName"
+                id="userName"
+                placeholder="Enter your name"
+                value="<%= userName %>"
+                required
+              />
             </div>
             <div class="input-label">
               <label for="userMessage">Your Message</label>
-              <textarea
-                name="userMessage"
-                id="userMessage"
-                placeholder="Enter your message"
-                maxlength="120"
-                required
-              ></textarea>
+              <textarea name="userMessage" id="userMessage" placeholder="Enter your message" maxlength="120" required>
+<%= userMessage %></textarea
+              >
             </div>
             <button class="submit" type="submit">Submit</button>
           </div>
